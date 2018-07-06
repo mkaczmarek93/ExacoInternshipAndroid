@@ -39,6 +39,13 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
 	public WeatherViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		final View itemView = LayoutInflater.from(context).inflate(R.layout.item_weather, parent, false);
+		RecyclerView.ViewHolder holder = new WeatherViewHolder(itemView);
+		holder.itemView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				mClickListener.onClick(view);
+			}
+		});
 		return new WeatherViewHolder(itemView);
 	}
 
@@ -48,7 +55,15 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 			final CityWeather weather = items.get(position);
 			holder.binData(weather);
 		}
+
 	}
+
+	private View.OnClickListener mClickListener;
+
+	public void setClickListener(View.OnClickListener callback) {
+		mClickListener = callback;
+	}
+
 
 	class WeatherViewHolder extends RecyclerView.ViewHolder {
 
@@ -63,5 +78,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 			binding.setCityWeather(data);
 			binding.setDescription(data.getCityWeather().get(0));
 		}
+
+
 	}
 }

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import pl.exaco.internship.android.weatherdemo.R;
 import pl.exaco.internship.android.weatherdemo.databinding.ActivityCitiesBinding;
+import pl.exaco.internship.android.weatherdemo.model.City;
 import pl.exaco.internship.android.weatherdemo.model.CityWeather;
 import pl.exaco.internship.android.weatherdemo.service.IServiceFactory;
 import pl.exaco.internship.android.weatherdemo.service.impl.ServiceFactory;
@@ -48,6 +50,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 	private WeatherAdapter adapter;
 	private WeatherContract.Presenter presenter;
 
+
 	@AfterViews
 	void viewCreated() {
 		binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -55,6 +58,19 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 		binding.recyclerView.setAdapter(adapter);
 		presenter = new WeatherPresenter(this, serviceFactory);
 		getData();
+
+
+		adapter.setClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int pos = binding.recyclerView.indexOfChild(v);
+
+				List<City> cityList = serviceFactory.getCitiesManager().getSavedCities();
+				long cityId = cityList.get(pos).getId();
+
+				Toast.makeText(WeatherActivity.this, cityList.get(pos).getName() + " " + cityId, Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 	private void getData() {
@@ -93,4 +109,5 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 			getData();
 		}
 	}
+
 }
