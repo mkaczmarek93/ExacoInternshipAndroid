@@ -1,0 +1,11 @@
+<resources>
+	<string name="app_name">CityWeather demo</string>
+	<string name="no_data">Brak danych</string>
+	<string name="add">Dodaj</string>
+	<string name="city_name">Wpisz nazwę miasta...</string>
+	<string name="lon">Longitude</string>
+	<string name="lat">Latitude</string>
+	<string name="sunset">Zachód</string>
+	<string name="sunrise">Wschód</string>
+	<string name="download_error">Błąd pobierania danych</string>
+</resources>

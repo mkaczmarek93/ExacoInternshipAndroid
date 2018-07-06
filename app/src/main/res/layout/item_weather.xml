@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data class="ItemWeatherBinding">
+
+		<import type="pl.exaco.internship.android.weatherdemo.model.City"/>
+
+		<variable
+			name="cityWeather"
+			type="pl.exaco.internship.android.weatherdemo.model.CityWeather"/>
+
+		<variable
+			name="description"
+			type="pl.exaco.internship.android.weatherdemo.model.Weather"/>
+	</data>
+
+	<android.support.v7.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/size_4dp"
+		android:background="@color/white"
+		android:elevation="@dimen/size_6dp"
+		android:padding="@dimen/size_4dp">
+
+		<android.support.constraint.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="@dimen/size_4dp">
+
+			<TextView
+				android:id="@+id/name"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text='@{cityWeather.name}'
+				android:textAlignment="center"
+				android:textSize="24sp"
+				app:layout_constraintBottom_toTopOf="@id/lon_text"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="Łódź"/>
+
+			<TextView
+				android:id="@+id/lon_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="@dimen/size_6dp"
+				android:layout_marginStart="@dimen/size_6dp"
+				android:text="@string/lon"
+				android:textSize="15sp"
+				app:layout_constraintBottom_toTopOf="@id/separator"
+				app:layout_constraintEnd_toStartOf="@id/lon"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/name"/>
+
+			<TextView
+				android:id="@+id/lon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text='@{cityWeather.coord.lon + ""}'
+				android:textSize="15sp"
+				app:layout_constraintBottom_toBottomOf="@id/lon_text"
+				app:layout_constraintEnd_toStartOf="@id/space"
+				app:layout_constraintStart_toEndOf="@id/lon_text"
+				app:layout_constraintTop_toTopOf="@id/lon_text"
+				tools:text="50.24"/>
+
+			<View
+				android:id="@+id/space"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				app:layout_constraintBottom_toTopOf="@id/lat_text"
+				app:layout_constraintEnd_toStartOf="@id/lat_text"
+				app:layout_constraintStart_toEndOf="@id/lon"
+				app:layout_constraintTop_toBottomOf="@id/name"/>
+
+			<TextView
+				android:id="@+id/lat_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/lat"
+				android:textSize="15sp"
+				app:layout_constraintBottom_toBottomOf="@id/lon_text"
+				app:layout_constraintEnd_toStartOf="@id/lat"
+				app:layout_constraintStart_toEndOf="@id/space"
+				app:layout_constraintTop_toTopOf="@id/lon_text"/>
+
+			<TextView
+				android:id="@+id/lat"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="@dimen/size_6dp"
+				android:layout_marginStart="@dimen/size_6dp"
+				android:text='@{cityWeather.coord.lat + ""}'
+				android:textSize="15sp"
+				app:layout_constraintBottom_toBottomOf="@id/lon_text"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@id/lat_text"
+				app:layout_constraintTop_toTopOf="@id/lon_text"
+				tools:text="16.95"/>
+
+			<View
+				android:id="@+id/separator"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/size_2dp"
+				android:background="@color/colorAccent"
+				app:layout_constraintBottom_toTopOf="@id/description"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/lat_text"/>
+
+			<ImageView
+				android:id="@+id/image"
+				android:layout_width="36dp"
+				android:layout_height="36dp"
+				app:imageUrl='@{description.icon}'
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/description"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/separator"/>
+
+			<LinearLayout
+				android:id="@+id/description"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="@dimen/size_2dp"
+				android:orientation="vertical"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/sun_info"
+				app:layout_constraintStart_toEndOf="@id/image"
+				app:layout_constraintTop_toBottomOf="@id/separator">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/size_2dp"
+					android:layout_marginEnd="@dimen/size_6dp"
+					android:layout_marginStart="@dimen/size_6dp"
+					android:text='@{description.main}'
+					android:textSize="16sp"
+					tools:text="Rain"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/size_2dp"
+					android:layout_marginEnd="@dimen/size_6dp"
+					android:layout_marginStart="@dimen/size_6dp"
+					android:maxLines="3"
+					android:maxWidth="120dp"
+					android:text='@{description.description}'
+					android:textSize="14sp"
+					tools:text="light rain"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/sun_info"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="@dimen/size_2dp"
+				android:orientation="vertical"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@id/description"
+				app:layout_constraintTop_toBottomOf="@id/separator">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/size_2dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="@dimen/size_2dp"
+						android:layout_marginEnd="@dimen/size_6dp"
+						android:layout_marginStart="@dimen/size_6dp"
+						android:text="@string/sunrise"
+						android:textSize="14sp"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="@dimen/size_2dp"
+						android:layout_marginEnd="@dimen/size_6dp"
+						android:layout_marginStart="@dimen/size_6dp"
+						android:textSize="14sp"
+						app:dateTime='@{cityWeather.sys.sunrise}'
+						tools:text="7:50"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/size_2dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="@dimen/size_2dp"
+						android:layout_marginEnd="@dimen/size_6dp"
+						android:layout_marginStart="@dimen/size_6dp"
+						android:text="@string/sunset"
+						android:textSize="14sp"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="@dimen/size_2dp"
+						android:layout_marginEnd="@dimen/size_6dp"
+						android:layout_marginStart="@dimen/size_6dp"
+						android:textSize="14sp"
+						app:dateTime='@{cityWeather.sys.sunset}'
+						tools:text="17:50"/>
+				</LinearLayout>
+			</LinearLayout>
+
+		</android.support.constraint.ConstraintLayout>
+	</android.support.v7.widget.CardView>
+</layout>
