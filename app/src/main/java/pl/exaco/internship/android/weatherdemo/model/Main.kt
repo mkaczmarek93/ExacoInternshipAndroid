@@ -8,4 +8,5 @@ data class Main(
         @SerializedName("humidity") val humidity: Double = 0.toDouble(),
         @SerializedName("temp_min") val tempMin: Double = 0.toDouble(),
         @SerializedName("temp_max") val tempMax: Double = 0.toDouble()
+
 )

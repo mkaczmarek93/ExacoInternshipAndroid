@@ -26,6 +26,12 @@
             android:screenOrientation="nosensor"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.weather.WeatherActivity" />
+
+        <activity
+            android:name=".ui.weather.FutureWeatherActivity_"
+            android:label="@string/title_activity_future_weather"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.weather.FutureWeatherActivity"></activity>
     </application>
 
 </manifest>

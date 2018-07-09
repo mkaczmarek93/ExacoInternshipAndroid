@@ -5,4 +5,9 @@ public interface IServiceFactory {
 	ICitiesManager getCitiesManager();
 
 	IWeatherManager getWeatherManager();
+
+	//Damian
+	IFutureWeatherManager getFutureWeatherManager();
+
+
 }

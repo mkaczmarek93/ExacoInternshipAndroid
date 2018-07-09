@@ -78,7 +78,5 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 			binding.setCityWeather(data);
 			binding.setDescription(data.getCityWeather().get(0));
 		}
-
-
 	}
 }

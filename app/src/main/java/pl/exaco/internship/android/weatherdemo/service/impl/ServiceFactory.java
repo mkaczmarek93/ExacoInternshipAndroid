@@ -4,6 +4,7 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 
 import pl.exaco.internship.android.weatherdemo.service.ICitiesManager;
+import pl.exaco.internship.android.weatherdemo.service.IFutureWeatherManager;
 import pl.exaco.internship.android.weatherdemo.service.IServiceFactory;
 import pl.exaco.internship.android.weatherdemo.service.IWeatherManager;
 
@@ -16,6 +17,9 @@ public class ServiceFactory implements IServiceFactory {
 	@Bean(WeatherManager.class)
 	IWeatherManager weatherManager;
 
+	@Bean(FutureWeatherManager.class)
+	IFutureWeatherManager futureWeatherManager;
+
 	@Override
 	public ICitiesManager getCitiesManager() {
 		return citiesManager;
@@ -24,5 +28,10 @@ public class ServiceFactory implements IServiceFactory {
 	@Override
 	public IWeatherManager getWeatherManager() {
 		return weatherManager;
+	}
+
+	@Override
+	public IFutureWeatherManager getFutureWeatherManager() {
+		return futureWeatherManager;
 	}
 }

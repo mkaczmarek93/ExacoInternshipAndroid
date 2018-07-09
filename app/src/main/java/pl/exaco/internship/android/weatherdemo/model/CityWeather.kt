@@ -12,5 +12,6 @@ data class CityWeather(
         @SerializedName("clouds") val clouds: Clouds? = null,
         @SerializedName("dt") val dt: Int = 0,
         @SerializedName("id") val id: Int = 0,
-        @SerializedName("name") val name: String? = null
+        @SerializedName("name") val name: String? = null,
+        @SerializedName("dt_txt") val dtText : String? = null
 )

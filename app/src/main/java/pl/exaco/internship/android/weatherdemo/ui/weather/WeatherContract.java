@@ -8,7 +8,7 @@ public interface WeatherContract {
 
 	interface Presenter {
 		void getWeather();
-
+		void getFutureWeather(Integer id);
 	}
 
 	interface View {

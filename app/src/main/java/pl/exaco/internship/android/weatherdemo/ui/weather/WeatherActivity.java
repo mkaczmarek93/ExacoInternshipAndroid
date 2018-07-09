@@ -1,6 +1,7 @@
 package pl.exaco.internship.android.weatherdemo.ui.weather;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -22,21 +23,18 @@ import pl.exaco.internship.android.weatherdemo.R;
 import pl.exaco.internship.android.weatherdemo.databinding.ActivityCitiesBinding;
 import pl.exaco.internship.android.weatherdemo.model.City;
 import pl.exaco.internship.android.weatherdemo.model.CityWeather;
+import pl.exaco.internship.android.weatherdemo.model.FutureWeather;
 import pl.exaco.internship.android.weatherdemo.service.IServiceFactory;
 import pl.exaco.internship.android.weatherdemo.service.impl.ServiceFactory;
 import pl.exaco.internship.android.weatherdemo.ui.city.CityActivity_;
 
 
-//TODO :
-// - inflate layout
-// - inflate menu
-// - init presenter, recycler, adapter
-// - load data
-// - menu click and activity result
 @EActivity(R.layout.activity_weather)
 @DataBound
 @OptionsMenu(R.menu.menu_weather)
 public class WeatherActivity extends AppCompatActivity implements WeatherContract.View {
+
+	public static final String EXTRA_CITY_ID = "EXTRA_CITY_ID";
 
 	private final static int CITY_ADD_REQUEST = 50232;
 	private static final String TAG = WeatherActivity.class.getSimpleName();
@@ -60,15 +58,21 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 		getData();
 
 
+
+
 		adapter.setClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				int pos = binding.recyclerView.indexOfChild(v);
 
 				List<City> cityList = serviceFactory.getCitiesManager().getSavedCities();
-				long cityId = cityList.get(pos).getId();
+				Integer cityId = cityList.get(pos).getId();
 
 				Toast.makeText(WeatherActivity.this, cityList.get(pos).getName() + " " + cityId, Toast.LENGTH_SHORT).show();
+				Intent futureWeatherIntent = new Intent(getBaseContext(), FutureWeatherActivity_.class);
+				futureWeatherIntent.putExtra("id", cityId);
+				startActivity(futureWeatherIntent);
+				//presenter.getFutureWeather((int)cityId);
 			}
 		});
 	}
